@@ -1,0 +1,33 @@
+public static void Values(BinNode<int> t, Stack<int> s)
+        {
+            Stack< BinNode<int> > stack = new Stack<BinNode<int>>();
+            Stack<int> even = new Stack<int>();
+            Stack<int> odd = new Stack<int>();
+            BinNode<int> temp;
+            stack.Push(t);
+            while (!stack.IsEmpty())
+            {
+                temp = stack.Pop();
+                if (temp.GetValue() % 2 == 0)
+                {
+                    even.Push(temp.GetValue());
+                }
+                else
+                {
+                    odd.Push(temp.GetValue());
+                }
+                if (temp.GetLeft() != null)
+                    stack.Push(temp.GetLeft());
+                if (temp.GetRight() != null)
+                    stack.Push(temp.GetRight());
+            }
+            while (!even.IsEmpty())
+            {
+                s.Push(even.Pop());
+            }
+            while (!odd.IsEmpty())
+            {
+                s.Push(odd.Pop());
+            }
+
+        }
