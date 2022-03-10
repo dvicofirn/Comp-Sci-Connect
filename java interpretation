@@ -1,0 +1,27 @@
+public static void values(BinNode<Integer>t,Stack<Integer>s){
+        Stack <BinNode <Integer> > stack = new Stack<BinNode <Integer>>();
+        Stack<Integer> even =  new Stack<Integer>();
+        Stack<Integer> odd =  new Stack<Integer>();
+        BinNode<Integer> temp;
+        stack.push(t);
+        while (!stack.isEmpty()){
+            temp = stack.pop();
+            if(temp.getValue()%2==0){
+                even.push(temp.getValue());
+            }
+            else{
+                odd.push(temp.getValue());
+            }
+            if(temp.getLeft()!=null)
+                stack.push(temp.getLeft());
+            if(temp.getRight()!=null)
+                stack.push(temp.getRight());
+        }
+        while(!even.isEmpty()){
+            s.push(even.pop());
+        }
+        while(!odd.isEmpty()){
+            s.push(odd.pop());
+        }
+
+    }
