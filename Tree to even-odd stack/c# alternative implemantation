@@ -3,7 +3,7 @@ public static void Values(BinNode<int> t, Stack<int> s)
     valuesAlt(t, s, 0);
     valuesAlt(t, s, 1);
 }
-public static void valuesAlt(BinNode<int> t, Stack<int> s, int modulo)
+public static void Values(BinNode<int> t, Stack<int> s, int modulo)
 {
     if (t == null)
         return;
