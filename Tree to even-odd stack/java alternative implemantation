@@ -1,0 +1,13 @@
+public static void values(BinNode<Integer> t, Stack<Integer> s)
+{
+    valuesAlt(t, s, 0);
+    valuesAlt(t, s, 1);
+}
+public static void valuesAlt(BinNode<Integer> t,Stack<Integer> s, int modulo){
+    if (t == null)
+        return;
+    if (t.getValue() % 2 == modulo)
+        s.push(t.getValue());
+    valuesAlt(t.getLeft(), s, modulo);
+    valuesAlt(t.getRight(), s, modulo);
+}
