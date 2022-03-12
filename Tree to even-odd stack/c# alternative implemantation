@@ -1,4 +1,4 @@
-public static void valuesAlt(BinNode<int> t, Stack<int> s)
+public static void Values(BinNode<int> t, Stack<int> s)
 {
     valuesAlt(t, s, 0);
     valuesAlt(t, s, 1);
