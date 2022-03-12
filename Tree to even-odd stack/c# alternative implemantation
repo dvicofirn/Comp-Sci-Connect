@@ -1,11 +1,14 @@
-public static void Values(BinNode<int> t, Stack<int> s)
-        {
-            if (t == null)
-                return;
-            if (t.GetValue() % 2 == 0)
-                s.Push(t.GetValue());
-            ValuesAlt(t.GetLeft(), s);
-            ValuesAlt(t.GetRight(), s);
-            if(t.GetValue() % 2 == 1)
-                s.Push(t.GetValue());
-        }
+public static void valuesAlt(BinNode<int> t, Stack<int> s)
+{
+    valuesAlt(t, s, 0);
+    valuesAlt(t, s, 1);
+}
+public static void valuesAlt(BinNode<int> t, Stack<int> s, int modulo)
+{
+    if (t == null)
+        return;
+    if (t.GetValue() % 2 == modulo)
+        s.Push(t.GetValue());
+    valuesAlt(t.GetLeft(), s, modulo);
+    valuesAlt(t.GetRight(), s, modulo);
+}
