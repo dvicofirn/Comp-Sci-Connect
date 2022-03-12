@@ -1,0 +1,11 @@
+public static void Values(BinNode<int> t, Stack<int> s)
+        {
+            if (t == null)
+                return;
+            if (t.GetValue() % 2 == 0)
+                s.Push(t.GetValue());
+            ValuesAlt(t.GetLeft(), s);
+            ValuesAlt(t.GetRight(), s);
+            if(t.GetValue() % 2 == 1)
+                s.Push(t.GetValue());
+        }
