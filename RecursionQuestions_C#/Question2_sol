@@ -1,0 +1,16 @@
+public static Node<int> dividers(int num)
+    {
+        Node<int> node = new Node<int>(1);
+        return node;
+    }
+		
+public static void dividers(int num, int index, Node<int> node)
+        {
+            if (index > num)
+                return;
+            if (num % index == 0)
+            {
+                node.SetNext(new Node<int>(index));
+                dividers(num, index + 1, node.GetNext());
+            }
+        }
