@@ -3,14 +3,14 @@ public static int MaxPoolSize(bool[][] matrix)
     int count = 0;
     for(int i=0; i < matrix.Length; i++)
     {
-     for(int j=0; j<matrix[i].Length; j++)
-      {
-      if (matrix[i][j])
-                    count = Math.Max(count, MaxPoolSize(matrix, i, j));
-            }
+        for(int j=0; j<matrix[i].Length; j++)
+        {
+            if (matrix[i][j])
+                count = Math.Max(count, MaxPoolSize(matrix, i, j));
         }
-        return count;
     }
+    return count;
+}
 public static int MaxPoolSize(bool[][] matrix, int i, int j)
 {
     if (!matrix[i][j])
