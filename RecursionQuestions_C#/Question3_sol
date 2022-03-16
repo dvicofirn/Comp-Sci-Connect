@@ -1,12 +1,15 @@
 public static int scd(int x, int y)
-    {
-        if (x % 2 == 0 && y % 2 == 0)
-            return 2;
-        return scd(x, y, 3);
-    }
+{
+    if (x % 2 == 0 && y % 2 == 0)
+        return 2;
+    return scd(x, y, 3);
+}
 public static int scd(int x, int y, int divider)
-    {
-        if(x%divider ==0 && y%divider ==0)
-            return divider;
-        else return scd(x, y, divider+2);
-    }
+{
+    int min = Math.Min(x, y);
+    if (divider > min)
+        return -1;
+    if(x%divider ==0 && y%divider ==0)
+        return divider;
+    else return scd(x, y, divider+2);
+}
