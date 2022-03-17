@@ -1,5 +1,4 @@
 ﻿using System;
-//using System.Collections.Generic;
 using Unit4.CollectionsLib;
 
 namespace Question_2
