@@ -1,0 +1,36 @@
+    public static boolean checkStackHelper(Stack <Integer> stack){
+        Stack<Integer>  stackTemp = new Stack<Integer>();
+        int temp;
+        boolean sorted = true;
+        while (!stack.isEmpty() && sorted){
+            temp=stack.pop();
+            if(!stack.isEmpty()){
+                if(temp<stack.top())
+                    sorted = false;
+            }
+            stackTemp.push(temp);
+        }
+        while (!stackTemp.isEmpty()){
+            temp=stackTemp.pop();
+            stack.push(temp);
+        }
+        return sorted;
+    }
+
+    public static boolean checkStack(Stack< Stack <Integer> > stack){
+        Stack< Stack <Integer> > stackTemp = new Stack< Stack <Integer> >();
+        Stack <Integer > temp;
+        boolean sorted = true;
+        while (!stack.isEmpty() && sorted){
+            temp=stack.pop();
+            if(!checkStackHelper(temp))
+                sorted=false;
+            stackTemp.push(temp);
+        }
+
+        while (!stackTemp.isEmpty()){
+            temp=stackTemp.pop();
+            stack.push(temp);
+        }
+        return sorted;
+    }
