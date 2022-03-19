@@ -1,0 +1,15 @@
+    public static int[] slantOfMatrixMultiplication (int[][] m1, int[][] m2){
+        int n = m1.length;//==m2.length
+        int[] arr = new int[n];
+        int sum=0;
+        for(int i =0; i<n; i++){
+            for(int j=0; j<n; j++){
+                sum+=m1[i][j]*m2[j][i];
+            }
+            arr[i]=sum;
+            sum=0;
+        }
+        return arr;
+    }
+
+}
