@@ -1,0 +1,89 @@
+package com.company;
+import unit4.collectionsLib.*;
+
+import java.util.Random;
+import java.util.Scanner;
+import java.util.random.*;
+
+public class Main {
+
+    public static boolean checkStackHelper(Stack <Integer> stack){
+        Stack<Integer>  stackTemp = new Stack<Integer>();
+        int temp;
+        boolean sorted = true;
+        while (!stack.isEmpty() && sorted){
+            temp=stack.pop();
+            if(!stack.isEmpty()){
+                if(temp<stack.top())
+                    sorted = false;
+            }
+            stackTemp.push(temp);
+        }
+        while (!stackTemp.isEmpty()){
+            temp=stackTemp.pop();
+            stack.push(temp);
+        }
+        return sorted;
+    }
+
+    public static boolean checkStack(Stack< Stack <Integer> > stack){
+        Stack< Stack <Integer> > stackTemp = new Stack< Stack <Integer> >();
+        Stack <Integer > temp;
+        boolean sorted = true;
+        while (!stack.isEmpty() && sorted){
+            temp=stack.pop();
+            if(!checkStackHelper(temp))
+                sorted=false;
+            stackTemp.push(temp);
+        }
+
+        while (!stackTemp.isEmpty()){
+            temp=stackTemp.pop();
+            stack.push(temp);
+        }
+        return sorted;
+    }
+    public static Stack<Integer> randomStack(){
+        Random rnd = new Random();
+        Stack<Integer> newStack = new Stack<>();
+        int len = rnd.nextInt(3,6);
+        for(int i = 0; i<len;i++){
+            newStack.push(rnd.nextInt(0,20));
+        }
+        return newStack;
+    }
+    public static Stack<Integer> sortedStack(){
+        Random rnd = new Random();
+        Stack<Integer> newStack = new Stack<>();
+        int len = rnd.nextInt(3,6);
+        int pushed= rnd.nextInt(0,5);
+        for(int i = 0; i<len;i++){
+            newStack.push(pushed);
+            pushed+=rnd.nextInt(0,5);
+        }
+        return newStack;
+    }
+    public static int[] slantOfMatrixMultiplication (int[][] m1, int[][] m2){
+        int n = m1.length;//==m2.length
+        int[] arr = new int[n];
+        int sum=0;
+        for(int i =0; i<n; i++){
+            for(int j=0; j<n; j++){
+                sum+=m1[i][j]*m2[j][i];
+            }
+            arr[i]=sum;
+            sum=0;
+        }
+        return arr;
+    }
+
+    public static void main(String[] args) {
+	    Stack < Stack <Integer> > allStack = new Stack< Stack <Integer> >();
+        Random rnd = new Random();
+        int len = rnd.nextInt(4,7);
+        for(int i=0;i<len;i++){
+            allStack.push(sortedStack());
+        }
+        System.out.println(func(allStack));
+    }
+}
