@@ -84,6 +84,6 @@ public class Main {
         for(int i=0;i<len;i++){
             allStack.push(sortedStack());
         }
-        System.out.println(func(allStack));
+        System.out.println(checkStack(allStack));
     }
 }
