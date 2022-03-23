@@ -1,0 +1,83 @@
+class Competitor implements Comparable<Competitor>{
+    private int minutes;
+    private int seconds;
+    private String name;
+    public Competitor(int minutes, int seconds, String name){
+        this.minutes=minutes;
+        this.seconds=seconds;
+        this.name=name;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
+    }
+
+    public int getSeconds() {
+        return seconds;
+    }
+
+    public void setSeconds(int seconds) {
+        this.seconds = seconds;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public int compareTo(Competitor competitor) {
+        return (this.minutes-competitor.getMinutes())*60+(this.seconds-competitor.seconds);
+    }
+
+    public boolean isBefore(Competitor competitor){
+        int compMin=competitor.getMinutes();
+        if(this.minutes<compMin)
+            return true;
+        if(this.minutes>compMin)
+            return false;
+        int compSeconds=competitor.getSeconds();
+        if(this.seconds>compSeconds)
+            return false;
+        return true;
+    }
+}
+
+class Race{
+    private Node<Competitor> finishList;
+    public Race(){
+        this.finishList=null;
+    }
+
+    public void add (Competitor x){
+        if(this.finishList==null){
+            this.finishList=new Node<Competitor>(x);
+            return;
+        }
+        Node<Competitor> temp = this.finishList;
+        while(temp.hasNext() && temp.getValue().isBefore(x)){
+            temp=temp.getNext();
+        }
+        Node<Competitor> tempNext=temp.getNext();
+        temp.setNext(new Node<Competitor>(x));
+        temp.getNext().setNext(tempNext);
+    }
+
+    public String rank (int x){
+        Node<Competitor> temp = this.finishList;
+        while(x>1 && temp!=null){
+            temp=temp.getNext();
+            x-=1;
+        }
+        if(temp == null)
+            return "Not Found";
+        return temp.getValue().getName();
+    }
+}
