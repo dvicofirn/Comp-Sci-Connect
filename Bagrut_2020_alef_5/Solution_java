@@ -81,3 +81,33 @@ class Race{
         return temp.getValue().getName();
     }
 }
+
+public class Main {
+
+    public static Competitor generateCompetitor(){
+        Random rnd = new Random();
+        int min=rnd.nextInt(0,127);
+        int sec;
+        if(min>0)
+            sec=rnd.nextInt(0,59);
+        else
+            sec = rnd.nextInt(30,59);
+        return new Competitor(min,sec, NameGenerator.generate());
+    }
+    public static Race generateRace(){
+        Random rnd = new Random();
+        int len = rnd.nextInt(3,8);
+        Race race = new Race();
+        for(int i =0; i<len;i++){
+            race.add(generateCompetitor());
+        }
+        return race;
+    }
+
+    public static void main(String[] args) {
+        Race race = generateRace();
+        for (int i =1; i<10; i++){
+            System.out.println("Competitor at "+ i +" is: "+race.rank(i));
+        }
+    }
+}
