@@ -14,4 +14,6 @@ public static void dividers(int num, int index, Node<int> node)
                 node.SetNext(new Node<int>(index));
                 dividers(num, index + 1, node.GetNext());
             }
+	    else
+	    	dividers(num, index + 1, node);
         }
