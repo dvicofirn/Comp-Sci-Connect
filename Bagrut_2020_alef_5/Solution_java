@@ -55,21 +55,19 @@ class Race{
     public Race(){
         this.finishList=null;
     }
-
     public void add (Competitor x){
-        if(this.finishList==null){
-            this.finishList=new Node<Competitor>(x);
-            return;
-        }
         Node<Competitor> temp = this.finishList;
-        while(temp.hasNext() && temp.getValue().isBefore(x)){
+        Node<Competitor> beforeTemp = null;
+        while(temp!=null && temp.getValue().isBefore(x)){
+            beforeTemp=temp;
             temp=temp.getNext();
         }
-        Node<Competitor> tempNext=temp.getNext();
-        temp.setNext(new Node<Competitor>(x));
-        temp.getNext().setNext(tempNext);
+        if(beforeTemp==null){
+            finishList=new Node<Competitor>(x,temp);
+            return;
+        }
+        beforeTemp.setNext(new Node<Competitor>(x,temp));
     }
-
     public String rank (int x){
         Node<Competitor> temp = this.finishList;
         while(x>1 && temp!=null){
