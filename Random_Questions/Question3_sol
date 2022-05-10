@@ -1,0 +1,24 @@
+public static Node<int> NumChainFromNode(Node< Node<int>> p)
+        {
+            Node<Node<int>> tempP = p;
+            Node<int> digitNode;
+            Node<int> reArrangedList=new Node<int>(-1);
+            Node<int> tempArrange= reArrangedList;
+            int multiplayer;
+            int sum;
+            while (tempP != null)
+            {
+                sum = 0;
+                multiplayer = 1;
+                digitNode = tempP.GetValue();
+                while(digitNode != null)
+                {
+                    sum = sum + (digitNode.GetValue()*multiplayer);
+                    multiplayer = multiplayer * 10;
+                }
+                tempArrange.SetNext(new Node<int>(sum));
+                tempArrange = tempArrange.GetNext();
+                tempP=tempP.GetNext();
+            }
+            return reArrangedList.GetNext();
+        }
